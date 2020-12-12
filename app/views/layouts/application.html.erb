@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <% if @current_user %>
+      Bonjour <%= @current_user.username %>
+      <%= link_to "Se déconnecter", '/sign_out', method: :delete %>
+    <% else %>
+      <%= link_to "Se connecter", '/sign_in', method: :get %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
