@@ -1,0 +1,17 @@
+<div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
+  <div class="">
+    Content
+  </div>
+  <div class="">
+    <%= @article.content %>
+  </div>
+  <div style="padding: 20px"></div>
+  <div class="">
+    Username
+  </div>
+  <div class="">
+    <%= @article.user.username %>
+  </div>
+  <div style="padding: 20px"></div>
+  <%= link_to "Edit", edit_article_path(@article) %>
+</div>
