@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
 
     def update
         if @article.update(article_params)
+            @article.update(edited_article: true)
             redirect_to articles_path
         else
             redirect_to edit_article_path(@article), notice: 'Wrong'
