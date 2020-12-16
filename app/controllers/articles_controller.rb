@@ -22,6 +22,10 @@ class ArticlesController < ApplicationController
         else
             redirect_to new_article_path, notice: 'Wrong'
         end
+        @revision = Revision.new(article_params)
+        @revision.user_id = @current_user.id
+        @revision.article_id = @article.id
+        @revision.save
     end
 
     def edit
@@ -30,6 +34,10 @@ class ArticlesController < ApplicationController
     def update
         if @article.update(article_params)
             @article.update(edited_article: true)
+            @revision = Revision.new(article_params)
+            @revision.user_id = @current_user.id
+            @revision.article_id = @article.id
+            @revision.save
             redirect_to articles_path
         else
             redirect_to edit_article_path(@article), notice: 'Wrong'
@@ -37,6 +45,8 @@ class ArticlesController < ApplicationController
     end
     
     def delete
+        @revision = Revision.where(article_id: @article.id)
+        @revision.destroy_all
         @article.destroy
         redirect_to articles_path
     end
@@ -54,7 +64,7 @@ class ArticlesController < ApplicationController
     end
 
     def redirect_user_if_no_article
-        if @article.nil? || @current_user.id != @article.user.id
+        if @article.nil? 
             redirect_to articles_path
         end
     end
