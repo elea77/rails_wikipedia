@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_12_15_143022) do
-=======
-ActiveRecord::Schema.define(version: 2020_12_16_144038) do
->>>>>>> 11d8e5a29afd311786c7390f14921add9f3d8640
+ActiveRecord::Schema.define(version: 2020_12_17_194848) do
 
   create_table "articles", force: :cascade do |t|
     t.string "content"
@@ -22,27 +18,16 @@ ActiveRecord::Schema.define(version: 2020_12_16_144038) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
-    t.boolean "edited_article"
+    t.boolean "edited_article", default: false
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-<<<<<<< HEAD
   create_table "contacts", force: :cascade do |t|
     t.string "Firstname"
     t.string "Lastname"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-=======
-  create_table "revision_articles", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.integer "article_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id"], name: "index_revision_articles_on_article_id"
-    t.index ["user_id"], name: "index_revision_articles_on_user_id"
   end
 
   create_table "revisions", force: :cascade do |t|
@@ -54,7 +39,6 @@ ActiveRecord::Schema.define(version: 2020_12_16_144038) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_revisions_on_article_id"
     t.index ["user_id"], name: "index_revisions_on_user_id"
->>>>>>> 11d8e5a29afd311786c7390f14921add9f3d8640
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,11 +47,10 @@ ActiveRecord::Schema.define(version: 2020_12_16_144038) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "points", default: 0.0
   end
 
   add_foreign_key "articles", "users"
-  add_foreign_key "revision_articles", "articles"
-  add_foreign_key "revision_articles", "users"
   add_foreign_key "revisions", "articles"
   add_foreign_key "revisions", "users"
 end

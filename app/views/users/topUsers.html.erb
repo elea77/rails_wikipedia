@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Top utilisateurs</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Classement</th>
+            <th>Username</th>
+            <th>Points</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @users.each_with_index do |user, index| %>
+            <tr>
+                <td><%= index + 1 %></td>
+                <td><%= user.username %></td>
+                <td><%= user.points %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

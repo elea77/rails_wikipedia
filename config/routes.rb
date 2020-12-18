@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   resources :contacts
-=======
   resources :revisions
->>>>>>> 11d8e5a29afd311786c7390f14921add9f3d8640
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -11,6 +8,7 @@ Rails.application.routes.draw do
   post '/sign_in', to: 'sessions#sign_in'
   delete '/sign_out', to: 'sessions#sign_out'
   get '/sign_up', to: 'users#new'
+  get '/topUsers', to: 'users#topUsers', as: 'topUsers'
 
   get    '/articles',     to: 'articles#index'
   get    '/articles/new', to: 'articles#new', as: 'new_article'

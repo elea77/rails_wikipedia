@@ -51,6 +51,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def topUsers
+    @users = User.order(points: :desc)
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy

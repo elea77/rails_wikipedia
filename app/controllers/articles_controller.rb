@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
         @revision.user_id = @current_user.id
         @revision.article_id = @article.id
         @revision.save
+        add_points(1)
     end
 
     def edit
@@ -38,6 +39,7 @@ class ArticlesController < ApplicationController
             @revision.user_id = @current_user.id
             @revision.article_id = @article.id
             @revision.save
+            add_points(0.5)
             redirect_to articles_path
         else
             redirect_to edit_article_path(@article), notice: 'Wrong'
@@ -67,6 +69,11 @@ class ArticlesController < ApplicationController
         if @article.nil? 
             redirect_to articles_path
         end
+    end
+
+    def add_points(nbPoints)
+        @user = @current_user
+        @user.update_attribute('points', @user.points + nbPoints)
     end
 
     def article_params
