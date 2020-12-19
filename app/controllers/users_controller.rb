@@ -52,7 +52,16 @@ class UsersController < ApplicationController
   end
 
   def topUsers
-    @users = User.order(points: :desc)
+    @allUsers = User.order(points: :desc)
+    @users = Array.new
+    top = 5 # a modifier si on souhaite un top 10,20 ou meme 2000
+    count = 0
+    while(count < top)
+      if(@allUsers[count])
+        @users[count] = @allUsers[count]
+      end
+      count += 1
+    end
   end
 
   # DELETE /users/1
