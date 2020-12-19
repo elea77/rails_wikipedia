@@ -1,33 +1,32 @@
-<%= link_to "New article", new_article_path %>
-<h1>Articles</h1>
-<% if @articles %>
-    <% for article in @articles %>
+<h1>Brouillons</h1>
+<% if @drafts %>
+    <% for draft in @drafts %>
     <div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
         <div class="">
         Title
         </div>
         <div class="">
-        <%= article.title %>
+        <%= draft.title %>
         </div>
         <div class="">
         Content
         </div>
         <div class="">
-        <%= article.content %>
-        <%= article.published %>
+        <%= draft.content %>
+        <%= draft.published %>
         </div>
         <div style="padding: 20px"></div>
         <div class="">
         Username
         </div>
         <div class="">
-        <%= article.user.username %>
+        <%= draft.user.username %>
         </div>
         <div style="padding: 20px"></div>
         <div style="padding: 20px"></div>
-        <%= link_to "Edit", edit_article_path(article) %>
-        <% if article.user == @current_user %>
-        <%= link_to "Delete", delete_article_path(article), method: :delete %>
+        <%= link_to "Edit", edit_article_path(draft) %>
+        <% if draft.user == @current_user %>
+        <%= link_to "Delete", delete_article_path(draft), method: :delete %>
         <% end %>
     </div>
     <% end %>

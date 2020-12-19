@@ -1,5 +1,4 @@
 <%= notice %>
-<%= debug @article.edited_article %>
 <%= form_for @article do |f| %>
   <div> 
     <%= f.label :title %>
@@ -9,6 +8,14 @@
     <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
+
+  <% if @article.user_id ==@current_user.id %>
+    <div>
+      <%= f.label :published %>
+      <%= f.check_box :published %>
+    </div>
+  <% end %>
+
   <div>
     <%= f.submit %>
   </div>

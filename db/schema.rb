@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_194848) do
+ActiveRecord::Schema.define(version: 2020_12_19_113722) do
 
   create_table "articles", force: :cascade do |t|
     t.string "content"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_194848) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
     t.boolean "edited_article", default: false
+    t.boolean "published"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -28,6 +29,17 @@ ActiveRecord::Schema.define(version: 2020_12_17_194848) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "revision_articles", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.integer "article_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_revision_articles_on_article_id"
+    t.index ["user_id"], name: "index_revision_articles_on_user_id"
   end
 
   create_table "revisions", force: :cascade do |t|
@@ -51,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_12_17_194848) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "revision_articles", "articles"
+  add_foreign_key "revision_articles", "users"
   add_foreign_key "revisions", "articles"
   add_foreign_key "revisions", "users"
 end

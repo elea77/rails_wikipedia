@@ -19,4 +19,8 @@ Rails.application.routes.draw do
   delete '/articles/:id', to: 'articles#delete', as: 'delete_article'
   get    '/articles/revision/:id', to: 'revisions#index', as: 'revision_article'
 
+  get    '/drafts', to: 'articles#drafts', as: 'drafts'
+
+
+
 end

@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     before_action :redirect_user_if_no_article, only: [:edit, :update, :delete, :show]
 
     def index
-        @articles = Article.all
+        @articles = Article.where(published: true)
     end
 
     def new
@@ -22,11 +22,13 @@ class ArticlesController < ApplicationController
         else
             redirect_to new_article_path, notice: 'Wrong'
         end
-        @revision = Revision.new(article_params)
-        @revision.user_id = @current_user.id
-        @revision.article_id = @article.id
-        @revision.save
-        add_points(1)
+        if  @article.published == true
+            @revision = Revision.new(revision_params)
+            @revision.user_id = @current_user.id
+            @revision.article_id = @article.id
+            @revision.save
+            add_points(1)
+        end
     end
 
     def edit
@@ -35,11 +37,13 @@ class ArticlesController < ApplicationController
     def update
         if @article.update(article_params)
             @article.update(edited_article: true)
-            @revision = Revision.new(article_params)
-            @revision.user_id = @current_user.id
-            @revision.article_id = @article.id
-            @revision.save
-            add_points(0.5)
+            if  @article.published == true
+                @revision = Revision.new(revision_params)
+                @revision.user_id = @current_user.id
+                @revision.article_id = @article.id
+                @revision.save
+                add_points(0.5)
+            end
             redirect_to articles_path
         else
             redirect_to edit_article_path(@article), notice: 'Wrong'
@@ -52,6 +56,12 @@ class ArticlesController < ApplicationController
         @article.destroy
         redirect_to articles_path
     end
+
+    
+    def drafts
+        @drafts = Article.where(published: false, user_id: @current_user)
+    end
+
 
     private
 
@@ -77,6 +87,12 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
+        params.require(:article).permit(:content, :title, :published)
+    end
+
+    def revision_params
         params.require(:article).permit(:content, :title)
     end
+
+
 end
