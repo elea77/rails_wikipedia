@@ -1,4 +1,6 @@
 class ContactMailer < ApplicationMailer
+
+  
   def when_edited
 
     @user = params[:user]

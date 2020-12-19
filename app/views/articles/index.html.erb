@@ -3,24 +3,24 @@
 <% if @articles %>
     <% for article in @articles %>
     <div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
-        <div class="">
+        <div class="title">
         Title
         </div>
-        <div class="">
+        <div class="user_title">
         <%= article.title %>
         </div>
-        <div class="">
+        <div class="content">
         Content
         </div>
-        <div class="">
+        <div class="user_content">
         <%= article.content %>
         <%= article.published %>
         </div>
         <div style="padding: 20px"></div>
-        <div class="">
+        <div class="username">
         Username
         </div>
-        <div class="">
+        <div class="user_username">
         <%= article.user.username %>
         </div>
         <div style="padding: 20px"></div>
