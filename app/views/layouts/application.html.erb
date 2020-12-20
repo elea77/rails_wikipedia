@@ -11,17 +11,31 @@
   </head>
 
   <body>
-    <% if @current_user %>
-      Bonjour <%= @current_user.username %> <br>
-      <%= link_to "Accéder au classement", '/topUsers', method: :get %>
-      <%= link_to "Accéder aux articles", '/articles', method: :get %>
-      <%= link_to "Accéder à mes brouillons", '/drafts', method: :get %>
-      <%= link_to "Se déconnecter", '/sign_out', method: :delete %>
-    <% else %>
-      <%= link_to "Se connecter", '/sign_in', method: :get %>
-    <% end %>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <h4 class="navbar-brand">Rails Wikipédia</h4>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <% if @current_user %>
+            <li class="nav-item"><%= link_to "Articles", '/articles', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Classement", '/topUsers', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Utilisateurs", '/users', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Mes brouillons", '/drafts', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Se déconnecter", '/sign_out', method: :delete, class: 'nav-link' %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "Articles", '/articles', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Classement", '/topUsers', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Utilisateurs", '/users', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Se connecter", '/sign_in', method: :get, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "S'inscrire", '/sign_up', method: :get, class: 'nav-link' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
 
-    <div class="container">
+    <div class="container" style="padding-top: 20px;">
 
     <%= yield %>
 

@@ -3,36 +3,36 @@
 </div>
 
 <div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
-  <div class="content">
-    Content
-  </div>
   <div class="content_user">
     <%= @article.content %>
   </div>
   <div style="padding: 20px"></div>
-  <div class="username">
-    Username
-  </div>
   <div class="username_user">
-    <%= @article.user.username %>
+    <b>Auteur : </b><%= @article.user.username %>
   </div>
-  <div style="padding: 20px"></div>
-  <%= link_to "Edit", edit_article_path(@article) %>
+  <div style="padding: 10px"></div>
+  <%= link_to "Modifier", edit_article_path(@article), class: 'text-primary' %>
+  <%= link_to 'Back', articles_path %>
 </div>
 
-<%= form_tag "/articles/#{@article.id}", method: "post" do %>
- 
-  <p><input type="hidden" name="article" value ="<%= @article.id %>"/></p>
-  <p><input type="hidden" name="user" value ="<%= @current_user.id %>"/></p>
-  <p><input type="text" name="content"/></p>
-  <input type="submit" value="Nouveau commentaire" />
- 
-<%end%>
+<% if @current_user %>
+  <%= form_tag "/articles/#{@article.id}", method: "post" do %>
 
-<h2 style='text-align="center"'>Commentaires</h2>
+    <input type="hidden" name="article" value ="<%= @article.id %>"/>
+    <input type="hidden" name="user" value ="<%= @current_user.id %>"/>
+    <div class="form-group">
+      <textarea name="content" id="" style="width: 100%;" cols="auto" row="auto" style="resize: none" placeholder="Entrez votre commentaire ici..."></textarea>
+    </div>
+    <input type="submit" value="Envoyez" class="btn btn-primary" />
+  
+  <% end %>
+<% end %>
+
+
+<h4 style='text-align="center"'>Commentaires</h4>
 <% for comment in @article.comments %>
   <div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
-    <h4><%= comment.user.username %></h4>
-    <%= comment.content %>
+    <h5><%= comment.content %></h5>
+    <%= comment.user.username %>
   </div>
 <% end %>

@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
+<h1>Utilisateurs</h1>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-      <th>Username</th>
+      <th>Pseudo</th>
       <th>Email</th>
-      <th>Password digest</th>
       <th>Points</th>
+      <th>Actions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,16 +16,13 @@
       <tr>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
-        <td><%= user.password_digest %></td>
         <td><%= user.points %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Voir', user, class: 'text-success' %> &nbsp;
+          <% if @current_user != nil && user.id == @current_user.id %>
+            <%= link_to 'Modifier', edit_user_path(user), class: 'text-primary' %> &nbsp;
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>

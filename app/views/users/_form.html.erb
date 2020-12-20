@@ -13,28 +13,28 @@
 
   <center>
 
-  <div class="field mt-5">
+  <div class="form-group field mt-5">
     <%= form.label :username %>
-    <%= form.text_field :username %>
+    <%= form.text_field :username, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group field">
     <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group field">
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
 
   <div class="actions mt-5">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 
   </center>

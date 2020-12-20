@@ -14,110 +14,16 @@
  *= require_self
  */
 
- h1{
-     text-align: center;
-    
+
+.btn {
+    color: white!important;
 }
 
-
-
-#user_username{
-    width: 300px;
-    height: 30px;
-    left: 478px;
-    top: 755px;
-    font-size: large;
-    border-radius: 6px;
-    color: #fff;
-    background:  #C0C0C0;
-    font-weight: 150;
-    margin-left: 90px;
+h1 {
+    text-align: center; 
 }
 
-#user_email, #login_email{
-    width: 300px;
-    height: 30px;
-    left: 478px;
-    top: 755px;
-    font-size: large;
-    border-radius: 6px;
-    color: #fff;
-    background:  #C0C0C0;
-    font-weight: 150;
-    margin-left: 122px;
-}
-
-#user_password, #login_password{
-    width: 300px;
-    height: 30px;
-    left: 478px;
-    top: 755px;
-    font-size: large;
-    border-radius: 6px;
-    color: #fff;
-    background:  #C0C0C0;
-    font-weight: 150;
-    margin-left: 95px;
-}
-
-#user_password_confirmation{
-    width: 300px;
-    height: 30px;
-    left: 478px;
-    top: 755px;
-    font-size: large;
-    border-radius: 6px;
-    color: #fff;
-    background:  #C0C0C0;
-    font-weight: 150;
-   
-}
-
-.field{
-    font-weight: 400;
-}
-
-
-input{
-
-    width: 150px;
-    border-radius: 6px;
-    background:  #C0C0C0;
-    color: #fff;
-
-}
-
-
-tr{
+.title_draft, .title_article {
     text-align: center;
 }
 
-#article_title{
-    margin-top: 50px;
-    margin-left: 30px;
-}
-
-#article_content{
-
-    border-radius: 6px;
-    color: #fff;
-    background:  #C0C0C0;
-    font-weight: 150;
-
-}
-
-.title{
-    
-    font-weight: 700;
-}
-
-.content{
-    
-    font-weight: 700;
-}
-
-.username{
-    
-    font-weight: 700;
-    
-}

@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Username:</strong>
+  <strong>Pseudo:</strong>
   <%= @user.username %>
 </p>
 
@@ -9,10 +7,9 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
 <p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
+  <strong>Date de création de compte:</strong>
+  <%= @user.created_at.strftime("%d-%m-%Y") %>
 </p>
 
 

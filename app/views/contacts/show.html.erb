@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Firstname:</strong>
   <%= @contact.Firstname %>
@@ -15,5 +13,5 @@
   <%= @contact.email %>
 </p>
 
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Modifier', edit_contact_path(@contact), class: 'text-primary' %> |
 <%= link_to 'Back', contacts_path %>

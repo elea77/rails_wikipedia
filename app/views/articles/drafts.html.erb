@@ -2,31 +2,22 @@
 <% if @drafts %>
     <% for draft in @drafts %>
     <div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
-        <div class="title">
-        Title
+
+        <div class="title_draft">
+        <h5><%= draft.title %></h5>
         </div>
-        <div class="title_user">
-        <%= draft.title %>
-        </div>
-        <div class="content">
-        Content
-        </div>
-        <div class="content_user">
+        <div class="content_draft">
         <%= draft.content %>
         <%= draft.published %>
         </div>
         <div style="padding: 20px"></div>
-        <div class="username">
-        Username
+        <div class="username_draft">
+        <b>Auteur : </b><%= draft.user.username %>
         </div>
-        <div class="username_user">
-        <%= draft.user.username %>
-        </div>
-        <div style="padding: 20px"></div>
-        <div style="padding: 20px"></div>
-        <%= link_to "Edit", edit_article_path(draft) %>
+        <div style="padding: 10px"></div>
+        <%= link_to "Modifier", edit_article_path(draft), class: 'text-primary' %>
         <% if draft.user == @current_user %>
-        <%= link_to "Delete", delete_article_path(draft), method: :delete %>
+        <%= link_to "Supprimer", delete_article_path(draft), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' %>
         <% end %>
     </div>
     <% end %>

@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 2020_12_20_093635) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "revision_articles", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.integer "article_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_revision_articles_on_article_id"
+    t.index ["user_id"], name: "index_revision_articles_on_user_id"
+  end
+
   create_table "revisions", force: :cascade do |t|
     t.string "content"
     t.string "title"
@@ -71,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_093635) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
+  add_foreign_key "revision_articles", "articles"
+  add_foreign_key "revision_articles", "users"
   add_foreign_key "revisions", "articles"
   add_foreign_key "revisions", "users"
 end
