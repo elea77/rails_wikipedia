@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get    '/articles/new', to: 'articles#new', as: 'new_article'
   post   '/articles',     to: 'articles#create'
   get    '/articles/:id', to: 'articles#show', as: 'article'
-  post   '/articles/:id' => 'articles#createComment'
+  post   '/articles/:id', to: 'articles#createComment'
   get    '/articles/:id/edit', to: 'articles#edit', as: 'edit_article'
   patch  '/articles/:id', to: 'articles#update'
   delete '/articles/:id', to: 'articles#delete', as: 'delete_article'
@@ -26,6 +26,6 @@ Rails.application.routes.draw do
 
   get    '/drafts', to: 'articles#drafts', as: 'drafts'
 
-
+  delete '/comments/:idComment/:idArticle', to: 'comments#delete', as: 'delete_comment'
 
 end

@@ -34,5 +34,8 @@
   <div style="padding: 10px; border: 1px solid #ddd; margin: 10px; border-radius: 5px;">
     <h5><%= comment.content %></h5>
     <%= comment.user.username %>
+    <% if comment.user == @current_user %>
+      <%= link_to "Supprimer", delete_comment_path(comment,@article), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-danger' %>
+    <% end %>
   </div>
 <% end %>

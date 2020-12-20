@@ -15,7 +15,9 @@ class ArticlesController < ApplicationController
     end
 
     def createComment
-        Comment.create user_id: params[:user], content: params[:content], article_id: params[:article]
+        if params[:content] != ""
+            Comment.create user_id: params[:user], content: params[:content], article_id: params[:article]
+        end
         redirect_to article_url(:id => @article.id)
     end
     
