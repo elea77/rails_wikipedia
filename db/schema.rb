@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_113722) do
+ActiveRecord::Schema.define(version: 2020_12_20_093635) do
 
   create_table "articles", force: :cascade do |t|
     t.string "content"
@@ -18,9 +18,26 @@ ActiveRecord::Schema.define(version: 2020_12_19_113722) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
-    t.boolean "edited_article"
+    t.boolean "edited_article", default: false
     t.boolean "published"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "articles_comments", id: false, force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.integer "comment_id", null: false
+    t.index ["article_id", "comment_id"], name: "index_articles_comments_on_article_id_and_comment_id"
+    t.index ["comment_id", "article_id"], name: "index_articles_comments_on_comment_id_and_article_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id", null: false
+    t.integer "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -52,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_12_19_113722) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "comments", "users"
   add_foreign_key "revisions", "articles"
   add_foreign_key "revisions", "users"
 end

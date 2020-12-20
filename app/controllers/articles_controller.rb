@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :set_article, only: [:edit, :update, :delete, :show]
+    before_action :set_article, only: [:edit, :update, :delete, :show, :createComment]
     before_action :authorize_user, only: [:new, :create, :edit, :update, :delete]
     before_action :redirect_user_if_no_article, only: [:edit, :update, :delete, :show]
 
@@ -12,6 +12,11 @@ class ArticlesController < ApplicationController
     end
 
     def show
+    end
+
+    def createComment
+        Comment.create user_id: params[:user], content: params[:content], article_id: params[:article]
+        redirect_to article_url(:id => @article.id)
     end
     
     def create
@@ -52,6 +57,8 @@ class ArticlesController < ApplicationController
     
     def delete
         @revision = Revision.where(article_id: @article.id)
+        @comments = Comment.where(article_id: @article.id)
+        @comments.destroy_all
         @revision.destroy_all
         @article.destroy
         redirect_to articles_path
@@ -93,6 +100,5 @@ class ArticlesController < ApplicationController
     def revision_params
         params.require(:article).permit(:content, :title)
     end
-
 
 end

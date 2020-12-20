@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   after_save :contact_edited
+  has_many :comments
 
   def contact_edited
     if (self.edited_article == true)

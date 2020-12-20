@@ -25,6 +25,7 @@
         </div>
         <div style="padding: 20px"></div>
         <div style="padding: 20px"></div>
+        <%= link_to "Show", article_path(article) %>
         <%= link_to "Edit", edit_article_path(article) %>
         <% if article.user == @current_user %>
         <%= link_to "Delete", delete_article_path(article), method: :delete %>
